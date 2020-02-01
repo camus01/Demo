@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+	<style>
+		#item{
+			width: 100px;
+			height: 100px;
+			background-color: red;
+		}
+		#item1{
+			width: 100px;
+			height: 100px;
+			background-color: orange;
+		}
+		#wrapper{
+			width: 300px;
+			height: 300px;
+			border: 1px solid #000;
+			margin-top: 20px;
+		}
+	</style>
+<body>
+
+	<div id="item" draggable="true"></div>
+	<div id="item1" draggable="true"></div>
+	<div id="wrapper" draggable="true"></div>
+	<script>
+		item.addEventListener('dragstart', function(e) {
+			e.dataTransfer.setData('data', this.id);
+		})
+		item1.addEventListener('dragstart', function(e) {
+			e.dataTransfer.setData('data', this.id);
+		})
+		wrapper.addEventListener('dragover', function(e) {
+		    e.preventDefault();
+		})
+		wrapper.addEventListener('drop', function(e) {
+			var da = e.dataTransfer.getData('data');
+			wrapper.appendChild(document.getElementById(da));
+		})
+
+	</script>
+</body>
+</html>

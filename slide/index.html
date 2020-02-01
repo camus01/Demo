@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+.s{
+    position: absolute;
+    left: -100px;
+    top: 50px;
+    width: 100px;
+    height: 100px;
+    background: red;
+    opacity: 0;
+    transition: left 200ms linear, opacity 2s linear; 
+}
+.f:hover + .s{
+    left: 0px;
+    opacity: 1;
+}
+	</style>
+</head>
+<body>
+	<div class="f">fffffff</div>
+	<div class="s"></div>
+	<div class="t"></div>
+</body>
+</html>

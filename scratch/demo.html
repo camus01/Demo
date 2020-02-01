@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<style>
+		canvas{
+
+		}
+</style>
+</head>
+<body>
+	<canvas id="myCanvas" width="300" height="300"></canvas>
+	<script>
+		var myCanvas = document.getElementById('myCanvas'),
+		ctx = myCanvas.getContext('2d'),
+		w = myCanvas.width,
+		h = myCanvas.height,
+		//beginPoint和endPoint解决定时器造成的断点问题
+		beginPoint = {},
+		endPoint = {};
+		function init(){
+			ctx.fillStyle = '#ccc';
+			ctx.fillRect(0, 0, w, h);
+
+
+
+			ctx.globalCompositeOperation = 'destination-out';
+
+			var img = new Image();
+			img.src = 'demo.jpg';
+
+			img.onload = function(){
+				myCanvas.style.background = 'url('+img.src+')';
+				myCanvas.addEventListener('mousedown', downFunc, false);//在鼠标按下后再进行mousemove和mouseup的监听
+			}
+		} 
+		init();
+		function downFunc(e){
+	
+			beginPoint.x = e.clientX - myCanvas.offsetLeft,
+			beginPoint.y = e.clientY - myCanvas.offsetTop;
+			//由于down之后可能move再up，也可能直接up，所以move和up写在一起即可
+			myCanvas.addEventListener('mousemove',moveFunc,false);
+			document.addEventListener('mouseup', upFunc,false);
+
+		}
+		function moveFunc(e){
+			endPoint.x = e.clientX - myCanvas.offsetLeft,
+			endPoint.y = e.clientY - myCanvas.offsetTop;
+
+			ctx.beginPath();
+			ctx.fillStyle = 'red';
+
+			ctx.moveTo(beginPoint.x , beginPoint.y);
+			ctx.lineTo(endPoint.x , endPoint.y);
+			ctx.stroke();
+
+			ctx.lineWidth = 40;
+			ctx.lineCap = 'round' ;
+			ctx.arc(endPoint.x, endPoint.y, 20, 0, Math.PI*2, 0);
+			ctx.closePath();
+			ctx.fill();
+
+			beginPoint.x = endPoint.x;
+			beginPoint.y = endPoint.y;
+
+
+		}
+		function upFunc(){
+			myCanvas.removeEventListener('mousemove', moveFunc, false);
+			document.removeEventListener('mouseup', upFunc, false);
+			clearCanvas();//刮到一定程度全部清除刮层
+		}
+
+		function clearCanvas(){
+			var d = ctx.getImageData(0,0,w,h),
+				c = 0,
+				len = d.data.length;
+			for(var i = 3; i < len; i += 4){//判断alpha的值是否为0
+				if(d.data[i] === 0){
+					c ++;
+				}
+
+			}
+			if(c > len/4 * 0.6){//len/4为像素总和
+				ctx.clearRect(0,0,w,h);
+			}
+		}
+
+
+	</script>
+
+</body>
+</html>
