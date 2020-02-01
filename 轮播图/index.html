@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="index.css">
+	
+	
+</head>
+<body>
+	<div class="wrapper">
+		<ul class="sliderPage">
+			<li><img src="img/cat_1.jpg" alt=""></li>
+			<li><img src="img/cat_2.jpg" alt=""></li>
+			<li><img src="img/cat_3.jpg" alt=""></li>
+			<li><img src="img/cat_4.jpg" alt=""></li>
+			<li><img src="img/cat_5.jpg" alt=""></li>
+			<li><img src="img/cat_1.jpg" alt=""></li>
+		</ul>
+		<div class="btn left"><</div>
+		<div class="btn right">></div>
+		<div class="sliderIndex">
+			<span class="active"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		
+	</div>
+	<div></div>
+	<script src="index.js"></script>
+	<script>
+		var timer = null;
+		var sliderPage = document.getElementsByClassName('sliderPage')[0];
+		var moveWidth = sliderPage.children[0].offsetWidth;
+		var num = sliderPage.children.length-1;
+		var leftBtn = document.getElementsByClassName('left');
+		var rightBtn = document.getElementsByClassName('right');
+		var knock = false;
+		var sp = document.getElementsByTagName('span');
+		var arr = [];
+		for (var i in sp){
+			arr.push(sp[i]);
+		}
+		
+		//圆点索引
+		var test = function(){
+			arr.forEach(function(item, index){
+				if(-sliderPage.offsetLeft <= index*moveWidth&&-sliderPage.offsetLeft > (index-1)*moveWidth){
+					item.className = 'active';
+				}else{
+					item.className = 'none';
+				}
+				})
+		}
+		setInterval('test()', 10)
+
+
+		leftBtn[0].onclick = function(){
+			unitMove('right->left');
+		}
+		rightBtn[0].onclick = function(){
+			unitMove('left->right');
+
+		}
+
+		//圆点点击索引
+		arr.forEach(function(item, index){
+			(function (){
+				item.onclick = function(){
+					knock = true;
+					clearTimeout(timer);
+					startMove(sliderPage, {left: -index*moveWidth}, function(){
+						knock = false;
+						timer = setTimeout(unitMove, 1500);						
+					})
+				}
+			})()
+		})
+
+		
+			//一次轮播函数
+
+			function unitMove(direction){
+				//默认左向右轮播
+				if(!knock){
+					knock = true;
+					clearTimeout(timer);
+					if(!direction || direction == 'left->right'){
+						startMove(sliderPage, {left: sliderPage.offsetLeft - moveWidth}, function(){
+							if(sliderPage.offsetLeft == -num * moveWidth){//判定最后一张
+								sliderPage.style.left = '0px';
+								sp[0].className = 'active';
+							}
+							knock = false;
+						});
+						timer = setTimeout(unitMove, 1500);
+						
+					}
+					else if(direction == 'right->left'){
+						if(sliderPage.offsetLeft == 0){
+							sliderPage.style.left = -num * moveWidth + 'px';
+						}
+						startMove(sliderPage, {left: sliderPage.offsetLeft + moveWidth}, function(){
+							knock = false;
+						});
+						timer = setTimeout(unitMove, 1500);
+					}
+					
+			}	
+		}
+				
+
+			//一次轮播函数结束
+			//
+
+
+		timer = setTimeout(unitMove, 1500);
+
+
+
+	</script>
+</body>
+</html>

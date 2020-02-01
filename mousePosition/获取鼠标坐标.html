@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+
+	<title></title>
+
+	<style type="text/css">
+		#box1{
+			width: 300px;
+			height: 200px;
+			border: 1px solid black;
+			margin-bottom: 50px;
+		}
+		#box2{
+			width: 300px;
+			height: 20px;
+			border: 1px solid black;
+		}
+	</style>
+
+	<script type="text/javascript">
+
+	  window.onload =function(){
+
+	  		var box1 = document.getElementById('box1');
+	  		var box2 = document.getElementById('box2');
+	  		box1.onmousemove = function(event){
+
+	  			var left = event.clientX;
+	  			var top = event.clientY;
+
+	  			box2.innerHTML = left+"px,"+top+"px";
+	  			
+	  		}; 		
+
+	  };
+
+
+	</script>
+
+</head>
+
+
+<body>
+	<div id="box1"></div>
+	<div id="box2"></div>
+
+</body>
+
+</html>

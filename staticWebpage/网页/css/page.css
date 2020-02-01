@@ -1,0 +1,302 @@
+body{
+	/*背景图片水平重复*/
+	background: url(../img/bd-bg.png) repeat-x;
+	font-size: 6px;
+}
+
+.head{
+	padding: 37px 15px 124px 15px;
+	width: 910px;
+	margin: 0 auto;
+}
+
+.width{
+	width: 940px;
+	margin: 0 auto;
+}
+.logo{
+	float: left;
+}
+
+.nav{
+	float: right;
+	margin-top: 22px;
+}
+
+.nav li{/*导航条向右浮动时，条内的文字应该向左浮动，否则li会从右往左排列*/
+	float: left;
+	/*设置左右边距*/
+	padding:0 10px 10px 10px;
+	/*设置左边框*/
+	border-left: 1px #d6d6d6 dotted;
+}
+
+/*导航条大字*/
+.nav li a{
+	/*font 不能指定颜色*/ 
+	font: bold 14px Georgia;
+	color: #666666;
+	text-decoration-line: none;
+}
+
+.nav a:hover{
+	color: #fcbf00;
+	text-decoration-line: underline;
+}
+
+/*导航条小字*/ 
+.nav li p{
+	color: #b7b7b7;
+	font: 11px tahoma;
+}
+
+.banner{/*给a的父元素开启相对定位*/
+	position: relative;
+}
+
+.pointer{
+	position: absolute;
+	top: 314px;
+	left: 15px;
+}
+
+.pointer a{
+	float: left;/*内联元素浮动才能指定宽高，指定宽高才能设置背景。也可以用line-block，但是要取消空格代码必须写到一行*/
+	width: 17px;
+	height: 17px;
+	background: url(../img/pointer.png) no-repeat;/*基于这个css文件的相对路径*/
+	margin-left: 4px;
+}
+
+.pointer a:hover{
+	background: url(../img/pointer-active.png) no-repeat;
+}
+
+.content h1{
+	text-align: center;
+	font: bold 24px Georgia;
+	margin-bottom: 38px;
+	padding: 6px 0 20px 0;/*padding上可以显示背景*/
+	background: url(../img/line.png) no-repeat bottom center;
+}
+
+.content{
+	
+}
+
+.pl , .cs , .uc{
+	/*都向左浮动*/
+	float: left;
+	width: 300px;
+}
+
+
+ /*给div添加左右边距*/
+
+.pl , .cs {
+	margin-right: 20px;
+}
+
+.sc , .co , .nu{
+	width: 300px; 
+	float: left;
+}
+
+.sc , .co{
+	margin-right: 20px;
+}
+/*解决高度塌陷*/
+.clearfix:before, .clearfix:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+.clearfix{
+	zoom: 1;
+}
+
+.content h2{
+	color: #11719e;
+	font: 21px Georgia;
+}
+
+.p1{
+	color: #8c8c8c;
+	font: 12px Helvetica;
+}
+
+.content .img{
+	width: 299px;	
+	height: 190px;
+	background: url(../img/img-bg.png) no-repeat;
+	margin: 16px 0 10px 0;
+	/*设置水平居中*/
+	text-align: center;
+	/*设置上内边距*/
+	padding-top: 12px;
+}
+
+.p2{/*给p2设置高度，使其高度不会因内容改变而改变，便于布局*/
+	height: 92px;
+	color: #3e3e3e;
+	font: 13px Helvetica;
+}
+
+.content .lm{
+	display: block;
+	width: 163px;
+	height: 40px;
+	padding-left: 15px;/*也可以用text-indent:1em;*/
+	text-decoration-line: none;
+	color: #016999;
+	font: 12px Helvetica;
+	line-height: 40px;/*必须后声明行高，因为font元素有一个默认行高，如果先声明line-height会被覆盖*/
+	background: url(../img/btn1.png) no-repeat;
+	margin-bottom: 35px;/*下外边距*/
+
+}
+
+
+.contact .txt{/*input是行内块元素，可以设置宽高*/
+	width: 276px;
+	height: 33px;
+	border: none;/*去除表单默认边框*/
+	background: url(../img/input.png) no-repeat;
+	/*清除默认内边距*/
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+
+.contact .tarea{
+	width: 276px;
+	height: 134px;
+	border: none;
+	background: url(../img/textarea.png) no-repeat;
+	/*去除默认内外边距*/
+	padding: 0px 10px;
+	margin: 0px;
+	resize: none;/*设置文本域不能调整大小*/
+}
+
+.contact .btn{
+	width: 163px;
+	height: 32px;
+	background: url(../img/btn2.png);
+	border: none;
+	/*清除内外边距*/
+	padding: 0px;
+	margin: 11px 0 23px 0; 
+	/*字体*/
+	color: white;
+	font: 13px Georgia;
+	text-align: left;
+	text-indent: 1em;
+
+	/*设置鼠标样式*/
+	cursor: pointer;
+}
+
+.contact h2{
+	color: #444;
+	font: 18px georgia;
+	border-bottom: 1px dashed #d3d3d3;
+	padding: 44px 0 10px;
+	margin-bottom: 15px;
+}
+
+/*背景*/
+.contact{/*不解决高度塌陷，此背景无效*/
+	background: url(../img/line.png) no-repeat top center;
+}
+
+.sc p{
+	color: #444;
+	font: 12px Helvetica;
+}
+
+.icon{
+	/*去除空格*/
+	font-size: 0px;
+	margin-top: 4px;
+}
+
+.icon a{
+	margin: 0px 6px 0 0;
+}
+
+.sc .nl{
+	font: bold 18px "gill sans mt";
+	margin-top: -25px;
+}
+
+.tt{
+	margin-top: 5px;
+}
+
+
+.sc .btn{
+	margin: 1px 0 23px 0; 
+}
+
+/*设置联系栏右侧*/
+.nu img{
+	float: left;
+	margin-right: 10px; 
+}
+
+
+
+.nu p{
+	height: 65px;
+	color: #444;
+	font: 12px/1 Helvetica;
+	margin-bottom: 11px;
+	border-bottom: 1px dashed #d3d3d3;
+}
+
+.nu .last{
+	margin-bottom: 0px;
+}
+
+.footer{
+	height: 173px;
+	background: #333;
+	/*设置上边框*/
+	border-top: 10px solid #4c4c4c;
+}
+
+/*底部文字*/
+.footer a , .footer p{
+	color: #999;
+	font:  11px/1.7 Helvetica;
+	text-decoration: none;
+}
+
+.footer p{
+	margin-left: 8px;
+	margin-right: 23px;
+}
+
+.footer a:hover{
+	color: white;
+	text-decoration: underline;
+}
+
+.footer .width{
+	padding-top: 18px;
+}
+
+.footer .cright{
+	float: right;
+}
+
+
+
+
+
+
+
+
+
+
+

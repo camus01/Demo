@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+	<style>
+		
+
+
+		#my_table {
+			margin: 80px auto;
+			border-spacing: 1px;
+			background-color: black;/*纯白的单元格背景覆盖掉纯黑的table背景，巧妙设置表格边线*/
+		}
+
+		th , td{
+			background-color: white;
+		}
+
+		.second{
+			border: 1px solid;
+			margin: -20px auto;
+			width: 300px;
+			padding: 0px 0px 10px 50px;
+		}
+
+
+	</style>
+	<title>添加删除记录功能</title>
+	<script type="text/javascript">
+
+	function del(){
+				var tr = this.parentNode.parentNode;
+				/*this 就是一个指针，指向我们调用函数的对象。
+				this 的值并不是由函数定义放在哪个对象里面决定，
+				而是函数执行时由谁来唤起决定。*/
+			var name = tr.children[0].innerHTML;
+			var flag = confirm("确认删除" + name+"吗？");//点击确认返回true；
+
+				if(flag){
+					tr.parentNode.removeChild(tr);
+				}
+				//return false;
+			};
+	window.onload = function(){
+		/*js中代码要从上到下，从左到右执行。
+		如果script标签在元素的前面，要获取页面中的元素
+		可以在此功能外面加window。onload；*/
+
+		//获取所有超链接
+		var all_A = document.getElementsByTagName('a');
+
+		//超链接的单击响应函数
+		for(var i=0; i<all_A.length; i++){
+			alert("hhhh");
+			all_A[i].onclick = del;
+		}
+
+		//添加的功能
+		
+			//为提交按钮绑定一个单击响应函数
+		var button_1 = document.getElementById("button_1");
+		button_1.onclick = function(){
+			//获取用户的信息
+			
+				//获取name
+				var name = document.getElementById("Name").value;//文本框的内容就是文本框的value属性
+				//获取email
+				var email = document.getElementById("Email").value;
+				//获取salary
+				var salary = document.getElementById("Salary").value;
+
+				//创建tr
+				var tr = document.createElement("tr");
+
+				//创建4个td
+				var nameTd = document.createElement("td");
+				var emailTd = document.createElement("td");
+				var salaryTd = document.createElement("td");
+				var aTd = document.createElement("td");
+
+				//创建a元素
+				var a = document.createElement("a");
+
+				//创建文本节点
+				var nameText = document.createTextNode(name);
+				var emailText = document.createTextNode(email);
+				var salaryText = document.createTextNode(salary);
+				var delText = document.createTextNode("删除");
+
+				//将文本添加到td中
+				nameTd.appendChild(nameText);
+				emailTd.appendChild(emailText);
+				salaryTd.appendChild(salaryText);
+
+				//向a中添加文本
+				a.appendChild(delText);
+				//向a添加href属性
+				a.href = "javascript:;";
+				//将a添加到td中
+				aTd.appendChild(a);
+				a.onclick = del;
+				/*加括号，代表会立即执行函数体代码
+				不加括号，都是把函数名作为函数的指针，此时不会运行函数体代码，所以也不会得到函数的结果。它只是传递了函数体所在的位置，告诉浏览器文档加载完之后要执行哪个函数。加载完之后通过del指针去寻找del();*/
+
+
+				//将td添加到tr中
+				tr.appendChild(nameTd);
+				tr.appendChild(emailTd);
+				tr.appendChild(salaryTd);
+				tr.appendChild(aTd);
+
+				//获取table
+				var my_table = document.getElementById("my_table");
+				//将tr添加到table中
+				my_table.appendChild(tr);	
+
+		}
+	};
+
+	</script>
+
+</head>
+
+
+<body>
+	
+	<table id="my_table">
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Salary</th>
+			<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+
+		</tr>
+		<tr>
+			<td>小王</td>
+			<td>xiaowang@163.com</td>
+			<td>9000</td>
+			<td><a href="javascript:;">删除</a></td>
+		</tr>
+		<tr>
+			<td>大王</td>
+			<td>dawang@163.com</td>
+			<td>13000</td>
+			<td><a href="javascript:;">删除</a></td>
+
+		</tr>
+		<tr>
+			<td>老王</td>
+			<td>dawang@163.com</td>
+			<td>7000</td>
+			<td><a href="javascript:;">删除</a></td>
+		</tr>
+
+	</table>
+
+	<div class="second">
+		
+		<table>
+			<h4>添加新员工</h4>
+			<tr>
+				<div>
+				<td>name:</td>
+				<td><input type="text" name="name" id="Name"></td>
+				</div>
+			</tr>
+			<tr>
+				<div>
+				<td>email:</td>
+				<td><input type="text" name="email" id="Email"></td>
+				</div>
+			</tr>
+			<tr>
+				<td align="center">salary:</td>
+				<td><input type="text" name="salary" id="Salary"></td>
+			</tr>
+		 	<tr>
+				<td colspan="2" align="center">
+					<button id="button_1">
+						Sublime
+					</button>
+				</td>
+		 	</tr>
+
+		</table>
+
+	</div>
+
+</body>
+
+</html>

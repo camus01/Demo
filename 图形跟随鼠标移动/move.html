@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<style>
+		#move{
+			height: 200px;
+			width: 200px;
+			background: red;
+			position:absolute; 
+		}
+		#m{
+			height: 200px;
+			width: 200px;
+			background: blue;
+
+		}
+	</style>
+
+	<title>
+
+	</title>
+	<script>
+		window.onload = function(){
+			var move = document.getElementById('move');	
+			var m = document.getElementById('m');	
+				document.onmousemove = function (argument) {
+					var x = argument.clientX;
+					var y = argument.clientY;
+					move.style.left = x+"px";
+					move.style.top = y+"px";
+				}
+				  m.onmousemove = function (argument) {
+				  	argument.cancelBubble = true;
+				  }
+		}
+
+
+	</script>
+
+</head>
+
+
+<body>
+	<div id="move"></div>
+	<div id="m"></div>
+</body>
+
+
+</html>
