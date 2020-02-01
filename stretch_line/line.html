@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>line</title>
+	<style>
+	path{
+	    stroke: black;
+	    fill: transparent;
+	    stroke-width: 20px;
+	    stroke-dasharray: 500px;
+	    animation: move 1s linear alternate infinite;
+}
+	@keyframes move{
+	    0%{
+	        stroke-dashoffset: 10px;
+	    } 
+	    100%{
+	        stroke-dashoffset: 500px;
+	    }
+	}
+	</style>
+</head>
+<body>
+	
+<svg width=500 height=500>
+    <path d="M 0 100 L 500 100"></path>
+</svg>
+</body>
+</html>

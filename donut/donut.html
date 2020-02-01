@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+	<style>
+		input{
+			width: 80px;
+		}
+		svg{
+			border: 1px solid #000;
+			display: block;
+			margin-top: 20px;
+			width: 500px;
+			height: 500px;
+			background-color: #ff3f33
+		}
+		path{
+			fill: transparent;
+			stroke-width: 30px;
+			stroke-linecap: square;
+		}
+		#p1{
+			stroke: #44ab47;
+		}
+		#p2{
+			stroke: #fcbf00;
+			stroke-dasharray: 1000px;
+			stroke-dashoffset: 1000px;
+			transition: all 2s ease;
+		}
+
+	</style>
+</head>
+<body>
+	<input type="text" id="btn" placeholder="input：0-100">
+	<svg>
+		<path id="p1" d="M 200 300 A 100 100 0 1 1 300 300"></path>
+		<path id="p2" d="M 200 300 A 100 100 0 1 1 300 300"></path>
+	</svg>
+	<script>
+		var len = p2.getTotalLength();
+		btn.onblur = function(){
+			var value = this.value;
+			var total = len * value / 100;
+			if(total > len){
+				p2.style.strokeDashoffset = 0 + 'px';
+			}else if(total < 0){
+				p2.style.strokeDashoffset = 1000 + 'px';
+			}else{
+				p2.style.strokeDashoffset = 1000 - total + 'px';
+			}
+		}
+	</script>
+</body>
+</html>
